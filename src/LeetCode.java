@@ -224,7 +224,11 @@ public class LeetCode {
         return null;
     }
 /*
-/  Create and remove void function for git commit
+/  Create void function for git commit to plgrsp1 only
 */
+
+    public static void blabla(){
+
+    }
 
 }
