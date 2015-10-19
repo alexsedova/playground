@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
@@ -223,12 +224,75 @@ public class LeetCode {
         }
         return null;
     }
-/*
-/  Create void function for git commit to plgrsp1 only
-*/
 
-    public static void blabla(){
-        //now trying to push it master
+/**********************************************************************************************************************/
+/* Given an index k, return the kth row of the Pascal's triangle.
+/* For example, given k = 3,
+/* Return [1,3,3,1].
+/**********************************************************************************************************************/
+    public List<Integer> getRow(int rowIndex) {
+        if (rowIndex == 0) {
+            List<Integer> tempRow = new ArrayList<Integer>();
+            tempRow.add(1);
+            return tempRow;
+        } else {
+            List<Integer> previousRow = getRow(rowIndex - 1);
+            List<Integer> tempRow = new ArrayList<Integer>(previousRow.size() + 1);
+            for (int i = 0; i < previousRow.size() + 1; i++) {
+                int left = i - 1 < 0 ? 0 : previousRow.get(i - 1);
+                int right = i >= previousRow.size() ? 0 : previousRow.get(i);
+                tempRow.add(left + right);
+            }
+            ;
+            return tempRow;
+        }
+    }
+/**********************************************************************************************************************/
+/* Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last
+/* word in the string.
+/* If the last word does not exist, return 0.
+/* Note: A word is defined as a character sequence consists of non-space characters only.
+/*    For example,
+/*    Given s = "Hello World",
+/*    return 5.
+/**********************************************************************************************************************/
+
+    public int lengthOfLastWord(String s) {
+        int endOfLastWord = s.length() - 1;
+        while (endOfLastWord >= 0 && s.charAt(endOfLastWord) == ' ') {
+            endOfLastWord--;
+        }
+        int bgnOfLastWord = endOfLastWord;
+        while (bgnOfLastWord >= 0 && s.charAt(bgnOfLastWord) != ' '){
+            bgnOfLastWord--;
+        }
+        return endOfLastWord - bgnOfLastWord;
     }
 
+/**********************************************************************************************************************/
+/*
+/* Write a program to check whether a given number is an ugly number.
+/*
+/* Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 6, 8 are ugly
+/* while 14 is not ugly since it includes another prime factor 7.
+/*
+/* Note that 1 is typically treated as an ugly number.
+/**********************************************************************************************************************/
+
+    public boolean isUgly(int num) {
+        if(num == 0) return false;
+
+        int mod = num;
+        while(mod%2 == 0){
+            mod = mod/2;
+        }
+        while(mod%3 == 0){
+            mod = mod/3;
+        }
+        while(mod%5 == 0){
+            mod = mod/5;
+        }
+        if(mod == 1) return true;
+        return false;
+    }
 }
